@@ -17,7 +17,7 @@
 
 ## Requirements
 
-1. **Python 3.9+** available on your PATH (setup uses Python standard library only).
+1. **Windows:** built-in PowerShell is sufficient for the one-click launcher; no Python required. **macOS/Linux:** Python 3.9+ is required for the shell launcher.
 2. **OpenAI Codex CLI** installed and authenticated. See the [official Codex installation instructions](https://github.com/openai/codex#quickstart). For example, if Node.js/npm are installed: `npm install -g @openai/codex`. Then run `codex` and complete sign-in. Codex availability and platform support follow the official documentation.
 3. An internet connection if required for Codex execution or downloading dependencies during app creation.
 4. Local rights to inspect the directories and tools you choose to make accessible. Some integrations may require extra approval, software, or fees.
@@ -26,7 +26,7 @@
 
 ### Windows (PowerShell or Command Prompt)
 
-Download the GitHub ZIP or clone this repository, extract it, and open its folder. Then double-click **`setup-windows.bat`** or run:
+Download the GitHub ZIP or clone this repository, extract it, and open its folder. Then double-click **`setup-windows.bat`** (no terminal or Python needed) or run:
 
 ```powershell
 .\setup-windows.bat
@@ -39,7 +39,7 @@ chmod +x setup-macos-linux.sh
 ./setup-macos-linux.sh
 ```
 
-The launcher checks for Codex, prepares `workspace/`, and starts an **interactive Codex session** using the complete supplied master prompt and branding addendum. It does not silently install packages, approve external actions or grant agent permissions.
+The launcher checks for Codex, prepares `workspace/`, and starts an **interactive Codex session** using the complete supplied master prompt and branding addendum. On Windows, when Node.js/npm is available but Codex is missing, it offers to install the official `@openai/codex` package **only after you explicitly approve**. Otherwise it displays the official installation guide. It never silently installs packages, approves external actions or grants agent permissions.
 
 ### Diagnostic / manual mode
 
@@ -59,7 +59,7 @@ In an IDE that already supports Codex, open `workspace/` and ask it to read `AGE
 3. Codex selects a compatible rendering and backend architecture, builds a local application, runs tests and attempts launch.
 4. Codex reports exactly what works, what is blocked, and the **actual** local URL if an app starts successfully.
 
-**This is not a guaranteed one-click install of a finished app.** The initial build requires an available coding agent and may need substantial time, tokens, dependencies, and user approvals. Closing the browser does not necessarily stop the local backend.
+**This is not a guaranteed one-click install of a finished app.** The initial build requires an authenticated coding agent and may need substantial time, tokens, dependencies, and user approvals. Closing the browser does not necessarily stop the local backend.
 
 ## Gallery
 
@@ -77,7 +77,8 @@ agent-hq/
 ├── LICENSE                       # MIT license
 ├── AGENTS.md                     # Repo guidance
 ├── bootstrap.py                  # Standard-library launcher
-├── setup-windows.bat             # Windows launcher
+├── setup-windows.bat             # Double-click Windows entry point
+├── setup-windows.ps1             # Python-free Windows setup logic
 ├── setup-macos-linux.sh          # macOS/Linux launcher
 ├── prompts/
 │   ├── AGENT_HQ_MASTER_PROMPT.md # Complete original specification

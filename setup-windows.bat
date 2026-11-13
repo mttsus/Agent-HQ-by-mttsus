@@ -1,15 +1,9 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-where py >nul 2>nul
-if %errorlevel%==0 (
-  py -3 bootstrap.py %*
-) else (
-  where python >nul 2>nul
-  if %errorlevel%==0 (
-    python bootstrap.py %*
-  ) else (
-    echo Python 3 is required. Install it from https://www.python.org/downloads/
-    exit /b 2
-  )
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0setup-windows.ps1"
+if errorlevel 1 (
+  echo.
+  echo Setup returned an error. Read the message above for details.
+  pause
 )
